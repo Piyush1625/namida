@@ -309,6 +309,7 @@ enum TrackTileItem {
   bitrate,
   sampleRate,
   bitDepth,
+  hiRes,
   bpm,
   format,
   channels,

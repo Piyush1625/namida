@@ -266,7 +266,7 @@ class NamidaMiniPlayerTrack extends StatelessWidget {
             final isLossless = trExt.isLossless;
 
             final bitsTextParts = [
-              if (bits >= 24) 'Hi-Res',
+              if (trExt.isHiRes) 'Hi-Res',
               if (isLossless == true) 'Lossless',
             ];
             final bitsText = bitsTextParts.join(' ');

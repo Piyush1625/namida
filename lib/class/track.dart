@@ -844,6 +844,13 @@ extension TrackExtUtils on TrackExtended {
     );
   }
 
+  /// Hi-Res = 24-bit or higher, or a sample rate above 48 kHz.
+  /// Tracks explicitly known to be lossy are never Hi-Res.
+  bool get isHiRes {
+    if (isLossless == false) return false;
+    return bits >= 24 || sampleRate > 48000;
+  }
+
   String get audioInfoFormattedAlt {
     final trExt = this;
     return TrackExtended.buildAudioInfoFormattedAlt(
@@ -1142,6 +1149,7 @@ extension TrackUtils on Track {
   int get sampleRate => toTrackExt().sampleRate;
   int get bits => toTrackExt().bits;
   bool? get isLossless => toTrackExt().isLossless;
+  bool get isHiRes => toTrackExt().isHiRes;
   String get format => toTrackExt().format;
   String get channels => toTrackExt().channels;
   int get discNo => toTrackExt().discNo;
