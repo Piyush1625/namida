@@ -28,7 +28,6 @@ dependency_overrides:
 
 dependencies:
   dio: ^5.4.0
-  archive: ^3.4.10
   flutter_js: ^0.8.0
 
   flutter:
