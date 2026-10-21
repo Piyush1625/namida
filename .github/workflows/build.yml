@@ -1,0 +1,38 @@
+name: Build Namida Snapshot APK
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+
+      - name: Fetch Dependencies
+        run: flutter pub get
+
+      - name: Build Release APK
+        run: flutter build apk --release --split-per-abi
+
+      - name: Upload Output APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: namida-snapshot-spoti
+          path: build/app/outputs/flutter-apk/*.apk
+          
