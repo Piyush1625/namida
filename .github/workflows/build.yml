@@ -22,7 +22,7 @@ channel: 'stable'
 name: Fetch Dependencies
 run: flutter pub get
 env:
-GH_Token: ${{ secrets.GHToken }}
+GH_TOKEN: ${{ secrets.GHTOKEN }}
 name: Build Release APK
 run: flutter build apk --release --split-per-abi
 name: Upload Output APK
